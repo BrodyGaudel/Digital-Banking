@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 public class Customer {
 	
@@ -18,6 +20,7 @@ public class Customer {
 	private String email;
 	
 	@OneToMany(mappedBy = "customer")
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private List<BankAccount> bankAccounts;
 	
 	
