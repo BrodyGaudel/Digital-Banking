@@ -2,9 +2,11 @@ package com.brody.ebankingbackend.restcontroller;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -39,15 +41,21 @@ public class CustomerRestController {
 		return bankAccountService.getCustomer(customerId);
 	}
 	
-	@PostMapping("/save/{id}")
+	@PostMapping("/save")
 	@ResponseBody
 	public CustomerDTO saveCustomer(@RequestBody CustomerDTO request) {
 		return bankAccountService.saveCustomer(request);
 	}
 	
+	@PutMapping("/update/{customerId}")
+	@ResponseBody
+	public CustomerDTO updateCustomer(@PathVariable Long customerId, @RequestBody CustomerDTO customerDTO) {
+		customerDTO.setId(customerId);
+		return bankAccountService.updateCustomer(customerDTO);
+	}
 	
-	
-	
-	
-
+	@DeleteMapping("/delete/{id}")
+	public void deleteCustomer(@PathVariable Long id) {
+		bankAccountService.deleteCustomer(id);
+	}
 }
