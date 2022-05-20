@@ -2,6 +2,7 @@ package com.brody.ebankingbackend.restcontroller;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("/ebank/account")
 @Slf4j
+@CrossOrigin(origins = "*")
 public class BankAccountRestController {
 	
 	private BankAccountService bankAccountService;
@@ -36,6 +38,7 @@ public class BankAccountRestController {
 	public List<BankAccountDTO> listAccount()  {
 		return bankAccountService.listBankAccount();
 	}
+	
 	
 	@GetMapping("/operations/{accountId}")
 	public List<AccountOperationDTO> getHistorique(@PathVariable String accountId){
